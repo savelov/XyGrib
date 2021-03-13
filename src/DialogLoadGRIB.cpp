@@ -135,15 +135,15 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     connect(chkGUSTsfc, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
 	
     connect(chkAltitude_All, SIGNAL(stateChanged(int)), this, SLOT(slotAltitude_All()));
-    connect(chkAltitude200, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
-    connect(chkAltitude300, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
-    connect(chkAltitude400, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
-    connect(chkAltitude500, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
-    connect(chkAltitude600, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
-    connect(chkAltitude700, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
-    connect(chkAltitude850, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
-    connect(chkAltitude925, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
-    connect(chkAltitude_SkewT, SIGNAL(stateChanged(int)), this, SLOT(slotAltSkew()));
+    connect(chkAltitude200, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
+    connect(chkAltitude300, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
+    connect(chkAltitude400, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
+    connect(chkAltitude500, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
+    connect(chkAltitude600, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
+    connect(chkAltitude700, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
+    connect(chkAltitude850, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
+    connect(chkAltitude925, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
+    connect(chkAltitude_SkewT, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
 	
     connect(chkWaveSig, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
     connect(chkWaveSwell, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
@@ -161,45 +161,6 @@ void DialogLoadGRIB::slotAltitude_All ()
 	chkAltitude700->setChecked (check);
 	chkAltitude850->setChecked (check);
 	chkAltitude925->setChecked (check);
-}
-//-------------------------------------------------------------------------------
-void DialogLoadGRIB::slotAltSelections()
-// individual altitude selection boxes need to be mutually exclusive
-// with skewt selection box
-{
-     if ( chkAltitude200->isChecked()
-          || chkAltitude300->isChecked()
-          || chkAltitude400->isChecked()
-          || chkAltitude500->isChecked()
-          || chkAltitude600->isChecked()
-          || chkAltitude700->isChecked()
-          || chkAltitude850->isChecked()
-          || chkAltitude925->isChecked()
-             )
-    {
-        chkAltitude_SkewT->setChecked(false);
-    }
-     slotParameterUpdated();
-
-}
-void DialogLoadGRIB::slotAltSkew()
-// individual altitude selection boxes need to be mutually exclusive
-// with skewt selection box
-{
-    if (chkAltitude_SkewT->isChecked())
-    {
-        chkAltitude200->setChecked(false);
-        chkAltitude300->setChecked(false);
-        chkAltitude400->setChecked(false);
-        chkAltitude500->setChecked(false);
-        chkAltitude600->setChecked(false);
-        chkAltitude700->setChecked(false);
-        chkAltitude850->setChecked(false);
-        chkAltitude925->setChecked(false);
-        chkAltitude_All->setChecked(false);
-    }
-    slotParameterUpdated();
-
 }
 
 //-------------------------------------------------------------------------------

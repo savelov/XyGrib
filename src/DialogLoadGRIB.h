@@ -61,9 +61,7 @@ class DialogLoadGRIB : public DialogBoxBase
         void slotParameterUpdated();
         void slotAltitude_All ();
 //        void slotFnmocWW3_All ();
-		void slotFinished (int result);
-        void slotAltSelections();
-        void slotAltSkew();
+        void slotFinished (int result);
 
     private:
         FileLoaderGRIB    *loadgrib;
