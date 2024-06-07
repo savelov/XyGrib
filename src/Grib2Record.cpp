@@ -403,6 +403,12 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
             periodP2 = periodP1 + gfld->ipdtmpl[26] *unit_of_time_range(gfld->ipdtmpl[25])/3600; // time_length
             resosec = 3600;
         }
+        else if (unit_of_time_range(gfld->ipdtmpl[25]) == 60 && gfld->ipdtmpl[8] % 60 == 0 &&  gfld->ipdtmpl[26] % 60 == 0) {
+            periodP1 = gfld->ipdtmpl[8] /60;
+            periodP2 = periodP1 + gfld->ipdtmpl[26] /60; // time_length
+            resosec = 3660;
+        }
+
         else {
             DBG("Can't determine forecast date");
             ok = false;
@@ -709,6 +715,8 @@ int Grib2Record::analyseProductType ()
 			else if (paramnumber==8)
 				return GRB_PRECIP_TOT;
 			else if (paramnumber==49)
+				return GRB_PRECIP_TOT;
+			else if (paramnumber==65)
 				return GRB_PRECIP_TOT;
 			else if (paramnumber==52) {
 				/*
